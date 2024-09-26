@@ -1,0 +1,188 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "line_change_status",
+            "description": "更改输电线路的状态。如果一条输电线路已连接，它将尝试断开；如果它已断开，它将尝试重新连接。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_id": {
+                        "type": "string",
+                        "description": "grid2op的环境id，这个环境名称是从registry中读取的，\n                  在后续执行修改线状态的时候需要，其中的env_id字段是环境的id，执行函数会从注册表中寻找对应的env."
+                    },
+                    "line_indices": {
+                        "type": "array",
+                        "description": "要更改状态的输电线路索引。",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "required": [
+                    "env_id",
+                    "line_indices"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "set_bus",
+            "description": "Retrieve or set busbars for grid2op elements.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "element_indices": {
+                        "type": "array",
+                        "description": "检索或设置母线的元素索引。\n                                    这些索引对应于 grid2op 的 Space GridObjects 向量。",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "bus_element_index": {
+                        "type": "integer",
+                        "description": "对应于 GridObjects 向量的元素索引。."
+                    },
+                    "bus_number": {
+                        "type": "integer",
+                        "description": "母线编号（断开连接时使用 -1）."
+                    }
+                },
+                "required": [
+                    "element_indices",
+                    "bus_element_index",
+                    "bus_number"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "plot_layout_by_name",
+            "description": "\n                Plot the layout of the grid and show the name and id of each element.\n                \n                当你的知识无法回答用户提出的问题，调用此工具。请从与用户的对话中提取用户想要绘制的电网环境\n                的名称作为env_name的参数的值\n        ",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_name": {
+                        "type": "string",
+                        "description": "环境的字符名称，用于绘制使用名称进行环境的绘图操作."
+                    }
+                },
+                "required": [
+                    "env_name"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "plot_layout_by_env_id",
+            "description": "\n                从环境变量中绘制grid2op的电路图\n                当你的知识无法回答用户提出的问题，调用此工具。请从与用户的对话中提取用户想要绘制的电网环境\n                的变量名称作为env参数的值        \n        ",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_id": {
+                        "type": "string",
+                        "description": "grid2op的环境id，这个环境名称是从registry中读取的，在画图的时候需要，其中的env_id字段是环境的id，执行函数会从注册表中寻找对应的env."
+                    }
+                },
+                "required": [
+                    "env_id"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "redispatch",
+            "description": "进行发电机功率重分配的操作.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_id": {
+                        "type": "string",
+                        "description": "环境的id，用于函数执行在哪个grid2op环境中进行redispatch的操作,如果用户明确指出，则使用用户指定id，如果没有指出则使用默认'env'作为id"
+                    },
+                    "gen_id": {
+                        "type": "array",
+                        "description": "发电机的id.",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "amount": {
+                        "type": "array",
+                        "description": "功率重分配的数量.",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "required": [
+                    "env_id",
+                    "gen_id",
+                    "amount"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "curtail",
+            "description": "限制发电机功率输出上限.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_id": {
+                        "type": "string",
+                        "description": "环境的id，用于函数执行在哪个grid2op环境中进行curtail的操作,如果用户明确指出，\n                        则使用用户指定id，如果没有指出则使用默认'env'作为id"
+                    },
+                    "gen_id": {
+                        "type": "array",
+                        "description": "The ID of the generator.",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "amount_ratio": {
+                        "type": "array",
+                        "description": "The ratio of generation to curtail.",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "required": [
+                    "env_id",
+                    "gen_id",
+                    "amount_ratio"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "plot_obs_by_env_id",
+            "description": "\n                从环境变量中绘制当前grid2op的观测状态电路图。\n                请从用户的对话中提取用户想要绘制的电网环境变量名称作为env参数的值，并在执行函数时传递。\n                绘制的内容包括线路信息（功率）和负载信息（电压）。\n        ",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "env_id": {
+                        "type": "string",
+                        "description": "grid2op的环境id，这个环境名称是从registry中读取的，在画图的时候需要，其中的env_id字段是环境的id，执行函数会从注册表中寻找对应的env."
+                    }
+                },
+                "required": [
+                    "env_id"
+                ]
+            }
+        }
+    }
+]
