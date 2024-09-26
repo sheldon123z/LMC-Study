@@ -1,0 +1,3 @@
+[submodule "libs/PowerZoo"]
+	path = libs/PowerZoo
+	url = https://github.com/XJTU-RL/PowerZoo.git
