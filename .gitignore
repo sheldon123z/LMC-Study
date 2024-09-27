@@ -95,6 +95,8 @@ dmypy.json
 *.swo
 *.tmp
 *.temp
+# 忽略 __pycache__ 目录
+__pycache__/
 
-
-/.ipynb_checkpoints/
+# 忽略 .ipynb_checkpoints 目录
+.ipynb_checkpoints/
