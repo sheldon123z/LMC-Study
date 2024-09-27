@@ -13,16 +13,6 @@
 - **可视化工具**：提供直观的图形界面，展示电力系统的运行状态和决策过程。
 - **模块化设计**：采用子模块管理，便于扩展和维护各个功能组件。
 
-## 技术栈
-
-- **编程语言**：Python
-- **子模块**：[PowerZoo](https://github.com/XJTU-RL/PowerZoo)（已作为子模块集成）
-- **依赖库**：
-  - `numpy`
-  - `pandas`
-  - `matplotlib`
-  - `torch`（用于大语言模型）
-  - 其他相关库
 
 ## 安装指南
 
@@ -32,28 +22,14 @@
 - Python 3.7 及以上版本
 - `pip` 包管理器
 
-### 克隆仓库
-
-使用 Git 克隆本仓库并初始化子模块：
-
-```bash
-git clone --recurse-submodules https://github.com/sheldon123z/Large-Model-Control.git
-cd your-repository
-```
-
-如果你已经克隆了仓库但未初始化子模块，可以运行：
-
-```bash
-git submodule update --init --recursive
-```
 
 ### 创建虚拟环境（可选）
 
 建议使用虚拟环境管理项目依赖：
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # 对于 Windows 用户使用 `venv\Scripts\activate`
+conda create -n LMC python=3.10 
+conda activate LMC
 ```
 
 ### 安装依赖
@@ -72,11 +48,12 @@ pip install -r requirements.txt
 
 ## 使用指南
 
-### 运行主程序
+### 运行example
 
-在项目根目录下运行主程序：
+在项目目录~/exampels下运行主程序：
 
 ```bash
+cd examples
 python main.py
 ```
 
