@@ -17,9 +17,14 @@ from process_message import process_tool_calls, create_message
 from tool_map import tool_map
 from openai import OpenAI
 from registry import env_registry, env_register
+from dotenv import load_dotenv
+import os
+
 
 # 设置日志记录器
 logger = get_logger(__name__)
+# 加载 .env 文件
+load_dotenv()
 
 try:
     from lightsim2grid import LightSimBackend
@@ -41,7 +46,7 @@ if __name__ == "__main__":
     # 初始化OpenAI客户端
     try:
         client = OpenAI(
-            api_key="sk-8e3a75c3f4f54d9c9fd7dd779dcd80a8",  # deepseek api
+            api_key=os.getenv("DEEPSEEK_KEY"),  # deepseek api
             base_url="https://api.deepseek.com"  # 使用 deepseek 模型
         )
         logger.info("OpenAI 客户端初始化成功，已连接到 DeepSeek API。")

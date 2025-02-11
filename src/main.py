@@ -1,25 +1,20 @@
+import sys
+import os
+
+# 获取当前脚本所在目录的上级目录路径
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# 将上级目录路径添加到sys.path
+sys.path.append(parent_dir)
+
 import grid2op
+from src.utils import get_logger
 from grid2op.PlotGrid import PlotMatplot
 from grid2op.Action import PlayableAction
 from grid2op.Parameters import Parameters
+from src.utils.process_json import load_json, save_json
 
-from typing import List, Dict, Any
-import matplotlib
-import matplotlib.pyplot as plt 
+# 设置日志记录器
+logger = get_logger(__name__)
 
-import uuid
-import json
 
-from process_message import process_tool_calls, create_message
-from tool_map import tool_map
-from openai import OpenAI
-from registry import env_registry, env_register
-from utils.process_json import load_json,save_json
-
-try:
-    from lightsim2grid import LightSimBackend
-    bk_cls = LightSimBackend
-except ImportError as exc:
-    print(f"Error: {exc} when importing faster LightSimBackend")
-    from grid2op.Backend import PandaPowerBackend
-    bk_cls = PandaPowerBackend
