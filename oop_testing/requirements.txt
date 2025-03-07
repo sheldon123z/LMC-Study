@@ -1,0 +1,33 @@
+# 核心依赖
+grid2op>=1.9.0
+numpy>=1.20.0
+pandas>=1.3.0
+
+# 高性能后端 (推荐但可选)
+lightsim2grid>=0.7.0
+
+# LLM工具链
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langgraph>=0.0.10
+langchain-core>=0.1.0
+
+# ReAct代理相关
+langchain-experimental>=0.0.32
+
+# 其他工具库
+matplotlib>=3.5.0
+jupyter>=1.0.0
+ipython>=8.0.0
+ipykernel>=6.0.0
+
+# 数据处理
+typing-extensions>=4.0.0
+pydantic>=2.0.0
+
+# 日志和系统库
+colorlog>=6.0.0
+
+# API调用
+httpx>=0.24.0
+requests>=2.28.0
